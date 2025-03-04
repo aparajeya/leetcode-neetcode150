@@ -32,15 +32,6 @@ class Solution:
         return
 
     def checkPowersOfThree(self, n: int) -> bool:
-        """
-        Checks if the given number n can be represented as a sum of distinct powers of 3.
-        
-        Args:
-        n (int): The number to check.
-        
-        Returns:
-        bool: True if n can be represented as a sum of distinct powers of 3, otherwise False.
-        """
         coins_values = []  # List to store powers of 3
         valid_coin_combination = []  # List to store all possible sums
         
@@ -60,3 +51,27 @@ class Solution:
         
         # Check if n is present in the generated valid sums
         return n in valid_coin_combination
+    
+# Below is the efficient solution
+'''
+The question is essentially asking us to to figure out whether a number
+can be represented by a base 3 ternary system where none of the powers 
+of 3 are duplicated, i.e. the powers of 3 must be distinct.
+
+Note that for example 3, n = 21 can be represented as 
+2 * (3 ^ 2) + 1 * (3 ^ 1) + 0 * (3 ^ 0), or (210)_3 in base 3. 
+The 2 coefficient here is the problem because that means we 
+don't have distinct powers of 3. Try doing the same thing you
+would when converting a number to binary, except, instead of using 2, 
+we are using 3 as the base here.
+
+Below is the solution for reference
+'''
+
+class Solution:
+    def checkPowersOfThree(self, n: int) -> bool:
+        while(n!=0):
+            if(n%3>1):
+                return False
+            n=n//3
+        return True
